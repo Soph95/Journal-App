@@ -1,0 +1,14 @@
+start with your database (e.g. using Sequelize to create users and journalEntries tables)
+add endpoints to modify those resources (e.g. GET /entries) just like with the Airports API stuff
+add login/JWT-auth to protect a user's entries
+create a frontend for your API
+
+
+// sequelize - one user, journal entry entries.belong to
+// journal belongs to user
+// add endpoints to modify them e.g. create jornal entry/ read journll entry
+// crud - airport api - db instead of json
+
+// Add login/sign up
+
+// UI
