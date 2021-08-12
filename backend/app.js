@@ -128,6 +128,19 @@ app.get("/users/:userId/entries", async (req, res) => {
   res.send(entries);
 });
 
+// GET specific entry
+app.get("/users/:userId/entries/:entryId", async (req, res) => {
+  const UserId = req.params.userId;
+  const entryId = req.params.entryId;
+  const entry = await JournalEntry.findAll({
+    where: {
+      UserId,
+      id: entryId,
+    },
+  });
+  res.send(entry);
+});
+
 //Delete Entries for specific user
 app.delete("/users/:userId/entries", async (req, res) => {
   const UserId = req.params.userId;
@@ -153,13 +166,26 @@ app.delete("/users/:userId", async (req, res) => {
   res.sendStatus(200);
 });
 
+//Delete specific entry
+app.delete("/users/:userId/entries/:entryId", async (req, res) => {
+  const UserId = req.params.userId;
+  const entryId = req.params.entryId;
+  await JournalEntry.destroy({
+    where: {
+      UserId,
+      id: entryId,
+    },
+  });
+  res.sendStatus(200);
+});
+
 //Update specific entry
 app.patch("/users/:userId/entries/:entryId", async (req, res) => {
   const entryId = req.params.entryId;
   const [updated] = await JournalEntry.update(
     {
+      title: req.body.title,
       content: req.body.content,
-      // title:
     },
     {
       where: {
