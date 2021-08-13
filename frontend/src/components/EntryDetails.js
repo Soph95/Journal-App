@@ -31,11 +31,12 @@ function EntryDetails() {
           <article key={entry.id}>
             <h2>{entry.title}</h2>
             <p>{entry.content}</p>
-            <h4>{entry.createdAt}</h4>
-            <button onClick={handleDelete}>
+            <h4>{entry.createdAt.slice(0, 10)}</h4>
+
+            <button className="entry-delete" onClick={handleDelete}>
               <Link to="/entries">Delete</Link>
             </button>
-            <button>
+            <button className="entry-update">
               <Link to={`${entryId}/update`}>Update</Link>
             </button>
           </article>

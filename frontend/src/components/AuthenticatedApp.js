@@ -1,7 +1,6 @@
 import Home from "./Home";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Entries from "./Entries";
-import Navbar from "./Navbar";
 import EntryDetails from "./EntryDetails";
 import Update from "./Update";
 import UnauthenticatedApp from "./UnauthenticatesApp";
@@ -17,7 +16,6 @@ function AuthenticatedApp({ onLogout }) {
   return (
     <Router>
       <div>
-        {/* <Navbar /> */}
         <Switch>
           <Route exact path="/">
             <Home />
@@ -31,14 +29,13 @@ function AuthenticatedApp({ onLogout }) {
           <Route exact path="/entries/:entryId/update">
             <Update />
           </Route>
-          {/* <Route exact path="/unauthenticated">
-            <UnauthenticatedApp />
-          </Route> */}
           <Route path="*">
             <NotFound />
           </Route>
         </Switch>
-        <button onClick={logout}>Logout</button>
+        <button onClick={logout} className="logout-btn">
+          <Link to="/">Logout</Link>
+        </button>
         {/* <button onClick={logout}>Delete Account</button> */}
       </div>
     </Router>
@@ -46,3 +43,9 @@ function AuthenticatedApp({ onLogout }) {
 }
 
 export default AuthenticatedApp;
+
+{
+  /* <Route exact path="/unauthenticated">
+            <UnauthenticatedApp />
+          </Route> */
+}

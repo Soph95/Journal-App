@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -40,26 +40,76 @@ function Signup({ onLogin }) {
 
   const classes = useStyles();
 
-  return <div></div>;
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="fname"
+                name="username"
+                variant="outlined"
+                required
+                fullWidth
+                label="Username"
+                autoFocus
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}></Grid>
+          </Grid>
+          <Link to="/">
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className="signup-btn"
+              onClick={() => onSubmit("/users", username, password, onLogin)}
+            >
+              Sign Up
+            </Button>
+          </Link>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <br />
+              <Link to="/" variant="body2">
+                {"Already have an account? Sign in"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Typography variant="body2" color="textSecondary" align="center">
+          {"Copyright © "}
+          {new Date().getFullYear()}
+          {"."}
+        </Typography>
+      </Box>
+    </Container>
+  );
 }
-// return (
-//   <div>
-//     <input
-//       type="text"
-//       className="username"
-//       value={username}
-//       onChange={(e) => setUsername(e.target.value)}
-//     />
-//     <input
-//       type="password"
-//       className="password"
-//       value={password}
-//       onChange={(e) => setPassword(e.target.value)}
-//     />
-//     <button onClick={() => onSubmit("/users", username, password, onLogin)}>
-//       Sign Up
-//     </button>
-//   </div>
-// );
-// }
+
 export default Signup;

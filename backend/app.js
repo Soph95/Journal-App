@@ -10,7 +10,7 @@ app.use(express.json());
 
 //find out how to deal with the same name in database?
 
-//Create user
+//Create user - signup
 app.post("/users", async (req, res) => {
   const { username, password } = req.body;
   const checkDuplicateUser = await User.findOne({

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useFetch from "./useFetch";
+import TextField from "@material-ui/core/TextField";
 
 function Update() {
   const [title, setTitle] = useState("");
@@ -14,9 +15,8 @@ function Update() {
   //Delete user account - problem occurs when trying to do that.
   //Required attribute not working
   //Figure out how to render unauth page once user has been deleted
-  //When looging in/out page redirects to where it last was - fix
-  //Fix url issue
   //Look over useFetch - delete some parameters.
+  //Think of a better way to sign up without having to link to /
 
   // const { data } = useFetch(`/users/${userId}/entries/${entryId}`, "GET");
 
@@ -31,30 +31,34 @@ function Update() {
   }
 
   return (
-    <div>
+    <div className="update-entry">
       <h1>Update Entry {entryId}</h1>
-      <form>
-        <label>Title</label> <br />
-        <input
-          type="text"
+      <form noValidate autoComplete="off">
+        <TextField
+          id="standard-basic"
+          label="Entry Title"
           className="title"
+          required
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+        />{" "}
         <br />
-        <label>Content</label> <br />
-        <textarea
-          type="text"
+        <TextField
+          id="standard-basic"
+          label="Content"
           className="content"
+          required
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          required
-        ></textarea>
+        />{" "}
+        <br />
+        <button className="update-btn" onClick={handleUpdate}>
+          <Link to="/entries">Sumbit</Link>
+        </button>
+        <button className="cancel-btn">
+          <Link to={`/entries/${entryId}`}>Cancel</Link>
+        </button>
       </form>
-      <button onClick={handleUpdate}>
-        <Link to="/entries">Sumbit</Link>
-      </button>
     </div>
   );
 }

@@ -11,14 +11,12 @@ function EntryList({ data }) {
 
   return (
     <div>
-      <h1>Entries</h1>
+      <h1 className="entries-heading">Entries</h1>
       <SearchBar data={data} />
-      <button onClick={handleDeleteAllEntries}>
+      <button className="delete-entries-btn" onClick={handleDeleteAllEntries}>
         <Link to="/">Delete all entries</Link>
       </button>
     </div>
   );
 }
 export default EntryList;
-
-// localStorage.setItem("userId", userId.toString());

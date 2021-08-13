@@ -10,8 +10,8 @@ async function onSubmit(url, username, password, onLogin) {
     const { jwt, userId } = await response.json();
     localStorage.setItem("jwt", jwt);
     localStorage.setItem("userId", userId.toString());
-    onLogin();
   }
+  onLogin();
 }
 
 export default onSubmit;

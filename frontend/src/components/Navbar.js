@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
+import useFetch from "./useFetch";
 
 function Navbar() {
+  const userId = localStorage.getItem("userId");
+  const { data } = useFetch(`/users/${userId}`, "GET");
+
   return (
     <nav className="navbar">
-      <h1 className="main-heading">Journal App</h1>
+      <h1 className="main-heading">{data && data.username}'s Journal App</h1>
       <div className="links">
         <span>
           <Link to="/">Home</Link>
@@ -11,7 +15,7 @@ function Navbar() {
         <span>
           <Link to="/entries">Entries</Link>
         </span>
-        {/* <Link to="/entries">Add Entry</Link> */}
+        <span>Settings</span>
       </div>
     </nav>
   );

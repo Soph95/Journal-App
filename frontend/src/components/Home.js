@@ -2,14 +2,26 @@ import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Navbar from "./Navbar";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 
 function Home() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const userId = localStorage.getItem("userId");
   const jwt = localStorage.getItem("jwt");
-  //   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+        width: "25ch",
+      },
+    },
+  }));
+
+  const classes = useStyles();
 
   async function onSubmit() {
     await fetch(`/users/${userId}/entries`, {
@@ -36,42 +48,41 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <h1>You are logged in</h1>
-      <form>
-        <label>Journal entry title</label> <br />
-        <input
-          type="text"
-          className="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <br />
-        <label>Journal entry content</label> <br />
-        <textarea
-          type="text"
-          className="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-        />
-        <br />
-        <Button variant="contained" onClick={onSubmit}>
-          <Link to="/entries">Add Entry</Link>
-        </Button>
-      </form>
+      <div className="entry-field">
+        <h1>Add an Entry</h1>
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField
+            id="standard-basic"
+            label="Entry Title"
+            className="title"
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />{" "}
+          <br />
+          <TextField
+            id="standard-basic"
+            label="Content"
+            className="content"
+            required
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />{" "}
+          <br />
+          <Button variant="contained" onClick={onSubmit}>
+            <Link to="/entries">Add Entry</Link>
+          </Button>
+        </form>
+      </div>
 
-      {/* { <button>
+      {/* { <button>  onClick={handleDeleteAccount}
         Delete account
         {/* <Link to="/unauthenticated">Delete account</Link> */}
       {/* </button> } */}
-
-      {/* {isPending && <button disabled>Adding Entry...</button>} */}
     </div>
   );
 }
 export default Home;
-// onClick={handleDeleteAccount}
 
 // const jwt = localStorage.getItem("jwt");
 // const userId = localStorage.getItem("userId");
