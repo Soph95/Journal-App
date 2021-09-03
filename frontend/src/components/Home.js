@@ -35,16 +35,6 @@ function Home() {
     // history.push("/entries");
     //Clear form
   }
-
-  //   function handleDeleteAccount() {
-  //     fetch(`/users/${userId}`, {
-  //       method: "DELETE",
-  //     }).then(() => {
-  //       localStorage.removeItem("jwt");
-  //       localStorage.removeItem("userId");
-  //     });
-  //   }
-
   return (
     <div>
       <Navbar />
@@ -74,11 +64,6 @@ function Home() {
           </Button>
         </form>
       </div>
-
-      {/* { <button>  onClick={handleDeleteAccount}
-        Delete account
-        {/* <Link to="/unauthenticated">Delete account</Link> */}
-      {/* </button> } */}
     </div>
   );
 }

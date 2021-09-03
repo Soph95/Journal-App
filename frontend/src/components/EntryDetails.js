@@ -30,9 +30,12 @@ function EntryDetails() {
         data.map((entry) => (
           <article key={entry.id}>
             <h2>{entry.title}</h2>
-            <p>{entry.content}</p>
-            <h4>{entry.createdAt.slice(0, 10)}</h4>
-
+            <div className="text">
+              <p>{entry.content}</p>
+            </div>
+            <h4>
+              {entry.createdAt.slice(0, 10).split("-").reverse().join("-")}
+            </h4>
             <button className="entry-delete" onClick={handleDelete}>
               <Link to="/entries">Delete</Link>
             </button>

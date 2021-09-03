@@ -17,7 +17,8 @@ function Update() {
   //Figure out how to render unauth page once user has been deleted
   //Look over useFetch - delete some parameters.
   //Think of a better way to sign up without having to link to /
-
+  // Make sure you cant sumbit until all fields are complete
+  //Fix errorMsg - figure out error.
   // const { data } = useFetch(`/users/${userId}/entries/${entryId}`, "GET");
 
   function handleUpdate() {

@@ -15,7 +15,9 @@ function Navbar() {
         <span>
           <Link to="/entries">Entries</Link>
         </span>
-        <span>Settings</span>
+        <span>
+          <Link to="/security">Security</Link>
+        </span>
       </div>
     </nav>
   );

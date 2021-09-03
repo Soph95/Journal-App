@@ -37,7 +37,7 @@ function SearchBar({ data }) {
     <div className="cards">
       <TextField
         id="standard-basic"
-        label="SEARCH ENTRIES BY TITLE"
+        label="Search entries by title"
         className="search-entries"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
@@ -58,14 +58,12 @@ function SearchBar({ data }) {
                 {entry.title}
               </Typography>
               <Typography variant="body2" component="p">
-                {entry.createdAt.slice(0, 10)}
+                {entry.createdAt.slice(0, 10).split("-").reverse().join("-")}
               </Typography>
             </CardContent>
             <CardActions>
               <Link className="entries-btn" to={`entries/${entry.id}`}>
-                {/* <button className="entries-btn" size="small"> */}
                 VIEW ENTRY
-                {/* </button> */}
               </Link>
             </CardActions>
           </Card>

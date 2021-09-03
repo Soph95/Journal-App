@@ -17,6 +17,7 @@ import Container from "@material-ui/core/Container";
 function Login({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
     paper: {
@@ -52,6 +53,8 @@ function Login({ onLogin }) {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            // error={errorMsg}
+            // helperText={errorMsg ? "User does not exist" : ""}
             variant="outlined"
             margin="normal"
             required
@@ -84,7 +87,9 @@ function Login({ onLogin }) {
             variant="contained"
             color="primary"
             className="login-btn"
-            onClick={() => onSubmit("/login", username, password, onLogin)}
+            onClick={() =>
+              onSubmit("/login", username, password, onLogin, setErrorMsg)
+            }
           >
             Sign In
           </Button>

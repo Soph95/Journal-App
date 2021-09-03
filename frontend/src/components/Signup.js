@@ -17,6 +17,7 @@ import Container from "@material-ui/core/Container";
 function Signup({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
     paper: {
@@ -54,6 +55,8 @@ function Signup({ onLogin }) {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
+                // error={errorMsg}
+                // helperText={errorMsg ? "Username already exists" : ""}
                 autoComplete="fname"
                 name="username"
                 variant="outlined"
@@ -86,7 +89,9 @@ function Signup({ onLogin }) {
               variant="contained"
               color="primary"
               className="signup-btn"
-              onClick={() => onSubmit("/users", username, password, onLogin)}
+              onClick={() =>
+                onSubmit("/users", username, password, onLogin, setErrorMsg)
+              }
             >
               Sign Up
             </Button>
