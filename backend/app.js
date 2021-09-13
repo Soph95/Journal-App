@@ -8,8 +8,6 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 
-//find out how to deal with the same name in database?
-
 //Create user - signup
 app.post("/users", async (req, res) => {
   const { username, password } = req.body;

@@ -19,7 +19,11 @@ describe("journal tests", () => {
       username: seedData.username,
       passwordHash: passwordHash,
     });
-    await JournalEntry.create({ content: "Test content", UserId: 1 });
+    await JournalEntry.create({
+      title: "Test title",
+      content: "Test content",
+      UserId: 1,
+    });
   });
   test("should create user", async () => {
     const username = "Charlie";
@@ -89,7 +93,7 @@ describe("journal tests", () => {
     const jwt = await generateAccessToken(1);
     const response = await request(app)
       .post("/users/1/entries")
-      .send({ content: "blah" })
+      .send({ title: "Test", content: "blah" })
       .set("Authorization", "Bearer " + jwt);
     expect(response.status).toBe(201);
     const newEntry = await JournalEntry.findOne({
