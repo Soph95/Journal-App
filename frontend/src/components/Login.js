@@ -53,8 +53,8 @@ function Login({ onLogin }) {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            // error={errorMsg}
-            // helperText={errorMsg ? "User does not exist" : ""}
+            error={errorMsg}
+            helperText={errorMsg ? "Username or password incorrect" : ""}
             variant="outlined"
             margin="normal"
             required
@@ -67,6 +67,8 @@ function Login({ onLogin }) {
             autoFocus
           />
           <TextField
+            error={errorMsg}
+            helperText={errorMsg ? "Username or password incorrect" : ""}
             variant="outlined"
             margin="normal"
             required

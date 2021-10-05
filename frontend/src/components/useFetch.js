@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-function useFetch(url, method, userInfo, authorization) {
+function useFetch(url, method) {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
 
@@ -8,9 +8,7 @@ function useFetch(url, method, userInfo, authorization) {
       method: method,
       headers: {
         "Content-Type": "application/json",
-        Authorization: authorization,
       },
-      body: JSON.stringify(userInfo),
     })
       .then((response) => {
         return response.json();

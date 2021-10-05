@@ -45,7 +45,7 @@ function Home() {
             id="standard-basic"
             label="Entry Title"
             className="title"
-            required
+            required={true}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />{" "}
@@ -54,12 +54,16 @@ function Home() {
             id="standard-basic"
             label="Content"
             className="content"
-            required
+            required={true}
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />{" "}
           <br />
-          <Button variant="contained" onClick={onSubmit}>
+          <Button
+            disabled={title.length < 1 || content.length < 1}
+            variant="contained"
+            onClick={onSubmit}
+          >
             <Link to="/entries">Add Entry</Link>
           </Button>
         </form>

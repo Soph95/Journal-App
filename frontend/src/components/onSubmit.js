@@ -12,10 +12,9 @@ async function onSubmit(url, username, password, onLogin, setErrorMsg) {
     localStorage.setItem("jwt", jwt);
     localStorage.setItem("userId", userId.toString());
     onLogin();
+  } else {
+    setErrorMsg(true);
   }
-  // else {
-  //   setErrorMsg(true);
-  // }
 }
 
 export default onSubmit;

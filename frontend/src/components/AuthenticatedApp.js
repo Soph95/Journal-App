@@ -44,6 +44,10 @@ function AuthenticatedApp({ onLogout }) {
           <Route exact path="/security">
             <Security />
           </Route>
+          {/* Think of better way to render home page when signing up. */}
+          <Route exact path="/signup">
+            <Home />
+          </Route>
           <Route path="*">
             <NotFound />
           </Route>

@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -55,12 +55,12 @@ function Signup({ onLogin }) {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                // error={errorMsg}
-                // helperText={errorMsg ? "Username already exists" : ""}
+                error={errorMsg}
+                helperText={errorMsg ? "Username already exists" : ""}
                 autoComplete="fname"
                 name="username"
                 variant="outlined"
-                required
+                required={true}
                 fullWidth
                 label="Username"
                 autoFocus
@@ -71,7 +71,7 @@ function Signup({ onLogin }) {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
+                required={true}
                 fullWidth
                 name="password"
                 label="Password"
@@ -83,19 +83,22 @@ function Signup({ onLogin }) {
             </Grid>
             <Grid item xs={12}></Grid>
           </Grid>
-          <Link to="/">
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className="signup-btn"
-              onClick={() =>
-                onSubmit("/users", username, password, onLogin, setErrorMsg)
-              }
-            >
-              Sign Up
-            </Button>
-          </Link>
+
+          {/* <Link to="/"> */}
+          <Button
+            disabled={username.length < 1 || password.length < 1}
+            fullWidth
+            variant="contained"
+            color="primary"
+            className="signup-btn"
+            onClick={() =>
+              onSubmit("/users", username, password, onLogin, setErrorMsg)
+            }
+          >
+            Sign Up
+          </Button>
+          {/* </Link> */}
+
           <Grid container justifyContent="flex-end">
             <Grid item>
               <br />

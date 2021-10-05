@@ -4,22 +4,11 @@ import useFetch from "./useFetch";
 import TextField from "@material-ui/core/TextField";
 
 function Update() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
   const { entryId } = useParams();
   const userId = localStorage.getItem("userId");
-
-  //Could make a GET request to the entry and get its title and contents and populate the
-  //form fields with those.
-  ///Fix date when updated.
-  //Delete user account - problem occurs when trying to do that.
-  //Required attribute not working
-  //Figure out how to render unauth page once user has been deleted
-  //Look over useFetch - delete some parameters.
-  //Think of a better way to sign up without having to link to /
-  // Make sure you cant sumbit until all fields are complete
-  //Fix errorMsg - figure out error.
-  // const { data } = useFetch(`/users/${userId}/entries/${entryId}`, "GET");
+  let entryTitle;
+  let entryContent;
+  let id;
 
   function handleUpdate() {
     fetch(`/users/${userId}/entries/${entryId}`, {
@@ -31,25 +20,50 @@ function Update() {
     });
   }
 
+  //when updating try get mouse to go to end of sentence.
+
+  const { data } = useFetch(`/users/${userId}/entries/${entryId}`, "GET");
+  data &&
+    data.map((entry) => {
+      entryTitle = entry.title;
+      entryContent = entry.content;
+      id = entry.id;
+    });
+
+  const [title, setTitle] = useState(entryTitle);
+  const [content, setContent] = useState(entryContent);
+
   return (
     <div className="update-entry">
       <h1>Update Entry {entryId}</h1>
-      <form noValidate autoComplete="off">
+      <form key={id} noValidate autoComplete="off">
         <TextField
           id="standard-basic"
           label="Entry Title"
           className="title"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          required={true}
+          defaultValue={entryTitle}
+          // value={title}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setTitle(e.target.value);
+          }}
+          // ref={(ref) => ref && ref.focus()}
+          // onFocus={(e) =>
+          //   e.target.setSelectionRange(
+          //     e.target.value.length,
+          //     e.target.value.length
+          //   )
+          // }
         />{" "}
         <br />
         <TextField
           id="standard-basic"
           label="Content"
           className="content"
-          required
-          value={content}
+          required={true}
+          // value={content}
+          defaultValue={entryContent}
           onChange={(e) => setContent(e.target.value)}
         />{" "}
         <br />
