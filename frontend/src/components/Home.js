@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Navbar from "./Navbar";
 import Button from "@material-ui/core/Button";
@@ -32,8 +32,6 @@ function Home() {
       },
       body: JSON.stringify({ title, content }),
     });
-    // history.push("/entries");
-    //Clear form
   }
   return (
     <div>
@@ -72,13 +70,3 @@ function Home() {
   );
 }
 export default Home;
-
-// const jwt = localStorage.getItem("jwt");
-// const userId = localStorage.getItem("userId");
-// const authorization = "Bearer " + jwt;
-// const userInfo = { title, content };
-// const response = useFetch(
-//   `/users/${userId}/entries`,
-//   "POST",
-//   userInfo,
-//   authorization   );

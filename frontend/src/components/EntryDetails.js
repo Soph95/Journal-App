@@ -1,5 +1,4 @@
 import { useParams, Link, useHistory } from "react-router-dom";
-import { useState } from "react";
 import useFetch from "./useFetch";
 import Navbar from "./Navbar";
 
@@ -16,9 +15,6 @@ function EntryDetails() {
     fetch(`/users/${userId}/entries/${entryId}`, {
       method: "DELETE",
     });
-    // .then(() => {
-    //   history.push("/entries");
-    // });
   }
 
   return (

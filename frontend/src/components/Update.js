@@ -43,7 +43,6 @@ function Update() {
           className="title"
           required={true}
           defaultValue={entryTitle}
-          // value={title}
           onChange={(e) => {
             console.log(e.target.value);
             setTitle(e.target.value);
@@ -62,7 +61,6 @@ function Update() {
           label="Content"
           className="content"
           required={true}
-          // value={content}
           defaultValue={entryContent}
           onChange={(e) => setContent(e.target.value)}
         />{" "}

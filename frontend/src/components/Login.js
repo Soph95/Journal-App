@@ -31,7 +31,7 @@ function Login({ onLogin }) {
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: "100%", // Fix IE 11 issue.
+      width: "100%",
       marginTop: theme.spacing(1),
     },
     submit: {
@@ -96,11 +96,6 @@ function Login({ onLogin }) {
             Sign In
           </Button>
           <Grid container justifyContent="flex-end">
-            {/* <Grid item xs>
-              <Link to="/#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid> */}
             <Grid item>
               <br />
               <Link to="/signup" variant="body2">
@@ -119,26 +114,6 @@ function Login({ onLogin }) {
       </Box>
     </Container>
   );
-
-  // return (
-  //   <div>
-  //     <input
-  //       type="text"
-  //       className="username"
-  //       value={username}
-  //       onChange={(e) => setUsername(e.target.value)}
-  //     />
-  //     <input
-  //       type="password"
-  //       className="password"
-  //       value={password}
-  //       onChange={(e) => setPassword(e.target.value)}
-  //     />
-  //     <button onClick={() => onSubmit("/login", username, password, onLogin)}>
-  //       Log in
-  //     </button>
-  //   </div>
-  // );
 }
 
 export default Login;

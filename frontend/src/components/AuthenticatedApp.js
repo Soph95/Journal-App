@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import Entries from "./Entries";
 import EntryDetails from "./EntryDetails";
 import Update from "./Update";
-import UnauthenticatedApp from "./UnauthenticatesApp";
 import NotFound from "./NotFound";
 import Security from "./Security";
 
