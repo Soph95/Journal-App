@@ -1,10 +1,7 @@
 import { useState } from "react";
 import useFetch from "./useFetch";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import { Button, Typography, Box, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 
 function Home() {
   const [title, setTitle] = useState("");
