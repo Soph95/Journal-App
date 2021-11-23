@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useFetch from "./useFetch";
-import TextField from "@material-ui/core/TextField";
+import { Typography, TextField, Button, Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 function Update() {
   const { entryId } = useParams();
@@ -20,7 +21,26 @@ function Update() {
     });
   }
 
-  //when updating try get mouse to go to end of sentence.
+  const useStyles = makeStyles((theme) => ({
+    typography: {
+      paddingTop: 20,
+      marginBottom: theme.spacing(8),
+      fontFamily: "Dancing Script",
+      borderBottom: "2px solid #FF0075",
+      width: "30%",
+      margin: "auto",
+    },
+    field: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
+      width: "50%",
+    },
+    btns: {
+      margin: theme.spacing(2),
+    },
+  }));
+
+  const classes = useStyles();
 
   const { data } = useFetch(`/users/${userId}/entries/${entryId}`, "GET");
   data &&
@@ -34,44 +54,54 @@ function Update() {
   const [content, setContent] = useState(entryContent);
 
   return (
-    <div className="update-entry">
-      <h1>Update Entry {entryId}</h1>
-      <form key={id} noValidate autoComplete="off">
-        <TextField
-          id="standard-basic"
-          label="Entry Title"
-          className="title"
-          required={true}
-          defaultValue={entryTitle}
-          onChange={(e) => {
-            console.log(e.target.value);
-            setTitle(e.target.value);
-          }}
-          // ref={(ref) => ref && ref.focus()}
-          // onFocus={(e) =>
-          //   e.target.setSelectionRange(
-          //     e.target.value.length,
-          //     e.target.value.length
-          //   )
-          // }
-        />{" "}
-        <br />
-        <TextField
-          id="standard-basic"
-          label="Content"
-          className="content"
-          required={true}
-          defaultValue={entryContent}
-          onChange={(e) => setContent(e.target.value)}
-        />{" "}
-        <br />
-        <button className="update-btn" onClick={handleUpdate}>
-          <Link to="/entries">Sumbit</Link>
-        </button>
-        <button className="cancel-btn">
-          <Link to={`/entries/${entryId}`}>Cancel</Link>
-        </button>
-      </form>
+    <div className="background">
+      <Box textAlign="center">
+        <Typography className={classes.typography} variant="h2" component="h1">
+          Update Entry
+        </Typography>
+        <form key={id} noValidate autoComplete="off">
+          <TextField
+            color="secondary"
+            variant="outlined"
+            label="Entry Title"
+            className={classes.field}
+            defaultValue={entryTitle}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setTitle(e.target.value);
+            }}
+          />
+          <br />
+          <TextField
+            color="secondary"
+            variant="outlined"
+            label="Content"
+            className={classes.field}
+            multiline
+            rows={4}
+            defaultValue={entryContent}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <br />
+          <Button
+            className={classes.btns}
+            color="secondary"
+            variant="contained"
+            onClick={handleUpdate}
+            href="/entries"
+          >
+            Submit
+          </Button>
+          <Button
+            className={classes.btns}
+            color="secondary"
+            variant="contained"
+            href="/entries"
+          >
+            Cancel
+          </Button>
+        </form>
+      </Box>
     </div>
   );
 }

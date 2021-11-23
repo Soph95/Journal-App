@@ -1,16 +1,18 @@
 import { useState } from "react";
 import onSubmit from "./onSubmit";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
+import {
+  Typography,
+  Container,
+  Button,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Avatar,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 
 function Signup({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -58,7 +60,7 @@ function Signup({ onLogin }) {
                 autoComplete="fname"
                 name="username"
                 variant="outlined"
-                required={true}
+                required
                 fullWidth
                 label="Username"
                 autoFocus
@@ -69,7 +71,7 @@ function Signup({ onLogin }) {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required={true}
+                required
                 fullWidth
                 name="password"
                 label="Password"
@@ -81,21 +83,17 @@ function Signup({ onLogin }) {
             </Grid>
             <Grid item xs={12}></Grid>
           </Grid>
-
-          {/* <Link to="/"> */}
           <Button
             disabled={username.length < 1 || password.length < 1}
             fullWidth
             variant="contained"
             color="primary"
-            className="signup-btn"
             onClick={() =>
               onSubmit("/users", username, password, onLogin, setErrorMsg)
             }
           >
             Sign Up
           </Button>
-          {/* </Link> */}
 
           <Grid container justifyContent="flex-end">
             <Grid item>

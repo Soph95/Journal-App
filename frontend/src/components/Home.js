@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import Navbar from "./Navbar";
+import useFetch from "./useFetch";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
@@ -10,14 +11,21 @@ function Home() {
   const [content, setContent] = useState("");
   const userId = localStorage.getItem("userId");
   const jwt = localStorage.getItem("jwt");
-  const history = useHistory();
+  const { data } = useFetch(`/users/${userId}`, "GET");
 
   const useStyles = makeStyles((theme) => ({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-        width: "25ch",
-      },
+    typography: {
+      paddingTop: 100,
+      marginBottom: theme.spacing(8),
+      fontFamily: "Dancing Script",
+      borderBottom: "2px solid #FF0075",
+      width: "30%",
+      margin: "auto",
+    },
+    field: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
+      width: "50%",
     },
   }));
 
@@ -33,39 +41,56 @@ function Home() {
       body: JSON.stringify({ title, content }),
     });
   }
+
   return (
-    <div>
-      <Navbar />
-      <div className="entry-field">
-        <h1>Add an Entry</h1>
-        <form className={classes.root} noValidate autoComplete="off">
+    <div className="background">
+      <Box textAlign="center">
+        <Typography
+          className={classes.typography}
+          variant="h2"
+          align="center"
+          gutterBottom
+        >
+          {data &&
+            data.username.slice(0, 1).toUpperCase() +
+              data.username.slice(1).toLowerCase()}
+          's Journal
+        </Typography>
+        <Typography variant="h4">Add an entry</Typography>
+        <form noValidate autoComplete="off">
           <TextField
-            id="standard-basic"
+            className={classes.field}
+            color="secondary"
+            variant="outlined"
             label="Entry Title"
-            className="title"
             required={true}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />{" "}
           <br />
           <TextField
-            id="standard-basic"
+            className={classes.field}
+            variant="outlined"
+            color="secondary"
             label="Content"
-            className="content"
+            multiline
+            rows={4}
             required={true}
             value={content}
             onChange={(e) => setContent(e.target.value)}
-          />{" "}
+          />
           <br />
           <Button
             disabled={title.length < 1 || content.length < 1}
             variant="contained"
+            color="secondary"
             onClick={onSubmit}
+            href="/entries"
           >
-            <Link to="/entries">Add Entry</Link>
+            Add entry
           </Button>
         </form>
-      </div>
+      </Box>
     </div>
   );
 }
