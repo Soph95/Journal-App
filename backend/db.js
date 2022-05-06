@@ -6,11 +6,27 @@ const location =
     ? ":memory:"
     : path.join(__dirname, "db.sqlite");
 
-const sequelize = new Sequelize({
+const settings = {
   dialect: "sqlite",
   storage: location,
   logging: process.env.NODE_ENV !== "test",
-});
+};
+
+let sequelize;
+
+if (process.env.NODE_ENV === "production") {
+  settings.dialect = "postgres";
+  settings.ssl = true;
+  settings.dialectOptions = {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  };
+  sequelize = new Sequelize(process.env.DATABASE_URL, settings);
+} else {
+  sequelize = new Sequelize(settings);
+}
 
 class User extends Model {}
 
