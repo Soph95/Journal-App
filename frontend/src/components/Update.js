@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import useFetch from "./useFetch";
 import { Typography, TextField, Button, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 function Update() {
   const { entryId } = useParams();
+  const history = useHistory();
   const userId = localStorage.getItem("userId");
   let entryTitle;
   let entryContent;
@@ -19,6 +20,7 @@ function Update() {
       },
       body: JSON.stringify({ title, content }),
     });
+    history.push("/entries");
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -88,7 +90,7 @@ function Update() {
             color="secondary"
             variant="contained"
             onClick={handleUpdate}
-            href="/entries"
+            // href="/entries"
           >
             Submit
           </Button>

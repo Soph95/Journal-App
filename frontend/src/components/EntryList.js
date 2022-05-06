@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 
 function EntryList({ data }) {
   const useStyles = makeStyles({
@@ -22,9 +23,12 @@ function EntryList({ data }) {
 
   function handleDeleteAllEntries() {
     const userId = localStorage.getItem("userId");
+    const history = useHistory();
+
     fetch(`/users/${userId}/entries`, {
       method: "DELETE",
     });
+    history.push("/");
   }
 
   return (
@@ -44,7 +48,7 @@ function EntryList({ data }) {
             className={classes.btn}
             color="secondary"
             variant="contained"
-            href="/"
+            // href="/"
             onClick={handleDeleteAllEntries}
           >
             Delete all entries

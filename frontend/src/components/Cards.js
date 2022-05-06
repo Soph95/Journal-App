@@ -26,6 +26,10 @@ function Cards({ data }) {
 
   const displayClearButton = searchValue.length > 0;
 
+  function handleUpdate() {
+    history.push(`/entries/${entry.id}/update`);
+  }
+
   function handleDelete(entryId) {
     fetch(`/users/${userId}/entries/${entryId}`, {
       method: "DELETE",
@@ -80,7 +84,7 @@ function Cards({ data }) {
                   </Typography>
                   <Box textAlign="center">
                     <Button
-                      {...history.push(`/entries/${entry.id}/update`)}
+                      onClick={handleUpdate}
                       color="secondary"
                       // href={`/entries/${entry.id}/update`}
                     >
