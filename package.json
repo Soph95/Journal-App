@@ -1,0 +1,10 @@
+{
+  "engines": {
+    "node": "16",
+    "npm": "8"
+  },
+  "scripts": {
+    "start": "node ./backend/index.js",
+    "postinstall": "cd ./frontend && npm run build"
+  }
+}
