@@ -12,9 +12,11 @@ import {
   Box,
 } from "@material-ui/core";
 import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
+import { useHistory } from "react-router-dom";
 
 function Cards({ data }) {
   const userId = localStorage.getItem("userId");
+  const history = useHistory();
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -78,8 +80,9 @@ function Cards({ data }) {
                   </Typography>
                   <Box textAlign="center">
                     <Button
+                      {...history.push(`/entries/${entry.id}/update`)}
                       color="secondary"
-                      href={`/entries/${entry.id}/update`}
+                      // href={`/entries/${entry.id}/update`}
                     >
                       Update
                     </Button>
