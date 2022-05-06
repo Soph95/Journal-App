@@ -6,7 +6,7 @@ const location =
     ? ":memory:"
     : path.join(__dirname, "db.sqlite");
 
-const settings = {
+let settings = {
   dialect: "sqlite",
   storage: location,
   logging: process.env.NODE_ENV !== "test",
