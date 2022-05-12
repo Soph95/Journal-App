@@ -2,7 +2,6 @@ import { useState } from "react";
 import useFetch from "./useFetch";
 import { Button, Typography, Box, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
 
 function Home() {
   const [title, setTitle] = useState("");
@@ -10,7 +9,6 @@ function Home() {
   const userId = localStorage.getItem("userId");
   const jwt = localStorage.getItem("jwt");
   const { data } = useFetch(`/users/${userId}`, "GET");
-  const history = useHistory();
 
   const useStyles = makeStyles((theme) => ({
     typography: {
@@ -39,7 +37,6 @@ function Home() {
       },
       body: JSON.stringify({ title, content }),
     });
-    history.push("/entries");
   }
 
   return (
@@ -85,7 +82,7 @@ function Home() {
             variant="contained"
             color="secondary"
             onClick={onSubmit}
-            // href="/entries"
+            href="/entries"
           >
             Add entry
           </Button>
