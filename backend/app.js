@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require("express");
 const bcrypt = require("bcrypt");
 const { User, JournalEntry } = require("./db");
@@ -8,7 +7,6 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "..", "frontend", "build")));
 
 //Create user - signup
 app.post("/users", async (req, res) => {
