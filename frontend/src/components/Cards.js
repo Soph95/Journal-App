@@ -12,6 +12,7 @@ import {
   Box,
 } from "@material-ui/core";
 import DeleteOutlined from "@material-ui/icons/DeleteOutlined";
+import ClearIcon from "@mui/icons-material/Clear";
 
 function Cards({ data }) {
   const userId = localStorage.getItem("userId");
@@ -23,10 +24,6 @@ function Cards({ data }) {
   });
 
   const displayClearButton = searchValue.length > 0;
-
-  function handleUpdate() {
-    history.push(`/entries/${entry.id}/update`);
-  }
 
   function handleDelete(entryId) {
     fetch(`/users/${userId}/entries/${entryId}`, {
@@ -45,7 +42,9 @@ function Cards({ data }) {
             onChange={(e) => setSearchValue(e.target.value)}
           />
           {displayClearButton ? (
-            <button onClick={() => setSearchValue("")}>X</button>
+            <IconButton onClick={() => setSearchValue("")}>
+              <ClearIcon />
+            </IconButton>
           ) : (
             ""
           )}

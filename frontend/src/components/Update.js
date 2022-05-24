@@ -90,7 +90,6 @@ function Update() {
             color="secondary"
             variant="contained"
             onClick={handleUpdate}
-            // href="/entries"
           >
             Submit
           </Button>
