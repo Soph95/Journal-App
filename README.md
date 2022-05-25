@@ -5,13 +5,17 @@ This project was to create a secure journal app with authentication, that allows
 - Frontend: React, Material UI.
 - Backend: NodeJS, Express, sequelize.
 
+## To run tests
+- `cd backend`
+- `npm run test`
+
 ## To run 
 ### Frontend
 
-`cd frontend`
-`npm start`
+- `cd frontend`
+- `npm start`
 
 ### Backend
 
-`cd backend`
-`node index.js`
+- `cd backend`
+- `node index.js`
