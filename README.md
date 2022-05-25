@@ -3,7 +3,7 @@ This project was to create a secure journal app with authentication, that allows
 
 ### Tech Stack
 - Frontend: React, Material UI.
-- Backend: NodeJS, Express, Sequelize.
+- Backend: NodeJS, Express, sequelize.
 
 ### Run Tests
 - `cd backend`
