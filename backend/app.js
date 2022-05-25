@@ -4,14 +4,11 @@ const { User, JournalEntry } = require("./db");
 const { generateAccessToken } = require("./auth");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const path = require("path");
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("public"));
 
 //Create user - signup
 app.post("/users", async (req, res) => {
