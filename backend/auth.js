@@ -24,7 +24,7 @@ function verifyToken(req, res, next) {
 
   if (authHeader) {
     const token = authHeader.split(" ")[1];
-    jwt.verify(token, SECRET, (err, token) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, token) => {
       if (err) {
         return res.sendStatus(403);
       }
