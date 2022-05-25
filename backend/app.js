@@ -11,20 +11,6 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 
-//DB
-app.get("/db", async (req, res) => {
-  try {
-    const client = await pool.connect();
-    const result = await client.query("SELECT * FROM test_table");
-    const results = { results: result ? result.rows : null };
-    res.render("pages/db", results);
-    client.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-});
-
 //Create user - signup
 app.post("/users", async (req, res) => {
   const { username, password } = req.body;
@@ -40,6 +26,20 @@ app.post("/users", async (req, res) => {
   const user = await User.create({ username, passwordHash });
   const jwt = await generateAccessToken(user.id);
   res.status(201).json({ jwt, userId: user.id });
+});
+
+//DB
+app.get("/db", async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query("SELECT * FROM test_table");
+    const results = { results: result ? result.rows : null };
+    res.render("pages/db", results);
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
 });
 
 //GET specific user
