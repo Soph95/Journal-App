@@ -8,8 +8,6 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "public")));
-
 //Create user - signup
 app.post("/users", async (req, res) => {
   const { username, password } = req.body;
