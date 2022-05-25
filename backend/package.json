@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "node /backend/index.js",
-    "build": "npm install"
+    "build": "npm install",
+    "postinstall": "cd ./frontend && npm install && npm run build && cd ../backend && npm install"
   },
   "keywords": [],
   "author": "",
